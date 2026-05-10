@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santi Planos de Saúde</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── TOKENS ─────────────────────────────────────── */
+    :root {
+      --dark:      #0e0c0a;
+      --dark2:     #1a1512;
+      --cream:     #f5f0eb;
+      --cream2:    #ede8e1;
+      --gold:      #db8849;
+      --gold-light:#e8a870;
+      --brown:     #5c3d2e;
+      --text:      #e8e0d5;
+      --text-muted:#9e8f80;
+      --serif:     'Cormorant Garamond', Georgia, serif;
+      --sans:      'DM Sans', sans-serif;
+      --radius:    12px;
+    }
+
+    /* ── RESET ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--dark);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── UTILITY ─────────────────────────────────────── */
+    .section-label {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .serif-heading {
+      font-family: var(--serif);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--cream);
+    }
+    .gold-accent { color: var(--gold); font-style: italic; }
+    .divider {
+      width: 40px; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 20px 0;
+    }
+
+    /* section-separator removido */
+    .section-separator { display: none; }
+
+    /* ── HEADER / NAV ────────────────────────────────── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: linear-gradient(to bottom, rgba(11,0,83,.85) 0%, rgba(11,0,83,0) 100%);
+      border-bottom: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+    }
+    .logo-wrap img {
+      height: 62px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* ── HERO ────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 0 0;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(11,0,83,.55) 0%, rgba(14,12,10,.72) 55%, rgba(14,12,10,.97) 90%),
+        url('hero-bg.jpg') center 30%/cover no-repeat;
+    }
+    .hero-content {
+      position: relative;
+      padding: 0 24px 44px;
+    }
+    .hero-badges {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .badge {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(200,169,110,.4);
+      border-radius: 100px;
+      padding: 5px 14px;
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(38px, 11vw, 56px);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 16px;
+    }
+    .hero-subtitle {
+      font-family: var(--sans);
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 32px;
+      max-width: 340px;
+    }
+    .hero-pills {
+      display: flex; flex-direction: column; gap: 8px;
+      margin-bottom: 32px;
+    }
+    .pill {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; color: var(--text-muted);
+    }
+    .pill-dot {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: rgba(200,169,110,.15);
+      border: 1px solid rgba(200,169,110,.4);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pill-dot svg { width: 9px; height: 9px; }
+
+    /* ── FORM CARD ───────────────────────────────────── */
+    .form-section {
+      background: var(--dark2);
+      padding: 32px 24px;
+    }
+    .form-title {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+    .form-title span { color: var(--gold); font-style: italic; }
+    .form-grid { display: flex; flex-direction: column; gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    input, select {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(200,169,110,.2);
+      border-radius: 8px;
+      padding: 13px 16px;
+      font-family: var(--sans);
+      font-size: 14px;
+      color: var(--cream);
+      outline: none;
+      transition: border-color .2s;
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+    }
+    input::placeholder { color: rgba(200,169,110,.3); }
+    input:focus, select:focus { border-color: var(--gold); }
+    select option { background: var(--dark2); color: var(--cream); }
+    .select-wrap { position: relative; }
+    .select-wrap::after {
+      content: '';
+      position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+      border: 5px solid transparent;
+      border-top-color: var(--gold);
+      margin-top: 3px;
+      pointer-events: none;
+    }
+    .ages-note { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .btn-cta {
+      width: 100%;
+      padding: 15px;
+      background: #db8849;
+      border: none;
+      border-radius: 8px;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: .08em;
+      color: var(--dark);
+      cursor: pointer;
+      margin-top: 6px;
+      transition: opacity .2s, transform .15s;
+    }
+    .btn-cta:active { opacity: .85; transform: scale(.98); }
+    .form-note {
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+
+    /* ── SECTION BASE ────────────────────────────────── */
+    .section-dark  { background: var(--dark);  padding: 56px 24px; }
+    .section-cream { background: var(--cream2); padding: 56px 24px; color: #111; }
+    .section-dark2 { background: var(--dark2); padding: 56px 24px; }
+
+    /* Seções gelo → textos preto */
+    .section-cream .serif-heading  { color: #111; }
+    .section-cream .section-label  { color: #db8849; }
+    .section-cream p, .section-cream li { color: #1a1a1a; }
+    .section-cream .text-muted { color: #444; }
+
+    /* Seções escuras → textos branco */
+    .section-dark  .serif-heading,
+    .section-dark2 .serif-heading  { color: #ffffff; }
+    .section-dark  .section-label,
+    .section-dark2 .section-label  { color: var(--gold); }
+    .section-dark  p, .section-dark li,
+    .section-dark2 p, .section-dark2 li { color: #e0e0e0; }
+    .section-dark  .why-intro,
+    .section-dark2 .why-intro      { color: #cccccc; }
+    .section-dark  .benefit-title,
+    .section-dark2 .benefit-title  { color: #ffffff; }
+    .section-dark  .benefit-text,
+    .section-dark2 .benefit-text   { color: #cccccc; }
+    .section-dark  .empresa-text,
+    .section-dark2 .empresa-text   { color: #e0e0e0; }
+    .section-dark  .stat-label,
+    .section-dark2 .stat-label     { color: #bbbbbb; }
+
+    /* ── WHY PLAN ────────────────────────────────────── */
+    .why-intro {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .stats-row {
+      display: flex; gap: 0;
+      border: 1px solid rgba(200,169,110,.15);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 28px 0 36px;
+    }
+    .stat {
+      flex: 1;
+      padding: 16px 8px;
+      text-align: center;
+      border-right: 1px solid rgba(200,169,110,.15);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-number {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--gold);
+      display: block;
+    }
+    .stat-label { font-size: 10px; color: var(--text-muted); line-height: 1.4; }
+
+    .benefits-grid { display: flex; flex-direction: column; gap: 12px; }
+    .benefit-card {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(200,169,110,.12);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .benefit-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: linear-gradient(135deg, rgba(200,169,110,.2), rgba(200,169,110,.05));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 16px;
+    }
+    .benefit-title {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+    .benefit-text { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+
+    /* ── PLAN TYPE CARDS ─────────────────────────────── */
+    .plan-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+    .plan-card {
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      border: 1px solid rgba(90,60,40,.3);
+    }
+    .plan-card.pf { background: var(--cream); }
+    .plan-card.pj { background: #f0ebe4; }
+    .plan-card-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: linear-gradient(135deg, #7a5c38, #5c3d2e);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; margin-bottom: 14px;
+    }
+    .plan-card-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .plan-card-text {
+      font-size: 13.5px;
+      color: #222;
+      line-height: 1.65;
+    }
+
+    /* ── EMPRESA SECTION ─────────────────────────────── */
+    .empresa-text {
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: #e0e0e0;
+    }
+    .empresa-text p { margin-bottom: 16px; }
+    .empresa-text p:last-child { margin-bottom: 0; }
+
+    /* ── PARTNERS ────────────────────────────────────── */
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .partner-tile {
+      background: #ffffff;
+      border: 1px solid rgba(90,60,40,.12);
+      border-radius: var(--radius);
+      height: 70px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 12px;
+      text-align: center;
+    }
+    .partner-tile img {
+      max-height: 44px;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: auto;
+    }
+
+    /* ── ABOUT / INSTITUCIONAL ───────────────────────── */
+    .about-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .about-photo-main {
+      grid-column: span 2;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 260px;
+    }
+    .about-photo-main img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+    }
+    .about-photo-sub {
+      border-radius: 12px;
+      overflow: hidden;
+      height: 160px;
+    }
+    .about-photo-sub img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+    }
+    .about-quote {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1.4;
+      margin: 24px 0 20px;
+      padding-left: 16px;
+      border-left: 2px solid var(--gold);
+    }
+    .about-text {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text-muted);
+    }
+    .about-text p { margin-bottom: 16px; }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: var(--cream2);
+      border-top: none;
+      padding: 28px 24px;
+      text-align: center;
+    }
+    footer img { height: 70px; width: auto; margin: 0 auto 10px; }
+    .footer-copy { font-size: 11px; color: #666; }
+
+    /* ── ANIMATIONS ──────────────────────────────────── */
+    .fade-in {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- ══ HEADER ══════════════════════════════════════════ -->
+<header>
+  <div class="logo-wrap">
+    <img src="logosanti-new.png" alt="Santi Planos de Saúde" style="filter:brightness(1.1);" />
+  </div>
+</header>
+
+<!-- ══ HERO ════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content fade-in">
+    <div class="hero-badges">
+      <span class="badge">Planos Personalizados</span>
+      <span class="badge">Pessoa Física</span>
+      <span class="badge">Pessoa Jurídica</span>
+    </div>
+    <h1 class="hero-title">
+      Cuidar da sua saúde e de quem você ama nunca foi tão
+      <span class="gold-accent"> necessário.</span>
+    </h1>
+    <p class="hero-subtitle">
+      Encontre o plano de saúde ideal para você, sua família ou sua empresa.
+      Assessoria especializada, sem custo, com os melhores parceiros do mercado.
+    </p>
+    <div class="hero-pills">
+      <div class="pill">
+        <div class="pill-dot">
+          <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 5l2 2 4-4" stroke="#db8849" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        Assessoria 100% gratuita
+      </div>
+      <div class="pill">
+        <div class="pill-dot">
+          <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 5l2 2 4-4" stroke="#db8849" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        Atendimento humanizado
+      </div>
+      <div class="pill">
+        <div class="pill-dot">
+          <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 5l2 2 4-4" stroke="#db8849" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        Melhores planos do mercado
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FORMULÁRIO ══════════════════════════════════════ -->
+<section class="form-section" id="cotacao">
+  <h2 class="form-title">Faça uma <span>cotação</span> personalizada</h2>
+  <div class="form-grid">
+    <div class="form-group">
+      <label for="nome">Nome completo</label>
+      <input type="text" id="nome" placeholder="Seu nome" />
+    </div>
+    <div class="form-group">
+      <label for="telefone">Telefone / WhatsApp</label>
+      <input type="tel" id="telefone" placeholder="(00) 00000-0000" />
+    </div>
+    <div class="form-group">
+      <label for="tipo">Tipo de plano</label>
+      <div class="select-wrap">
+        <select id="tipo">
+          <option value="" disabled selected>Selecione</option>
+          <option value="pf">Pessoa Física</option>
+          <option value="pj">Pessoa Jurídica</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="idades">Idades para cotação</label>
+      <input type="text" id="idades" placeholder="Ex: 35, 32, 5 anos" />
+      <span class="ages-note">Informe todas as idades dos beneficiários</span>
+    </div>
+    <div class="form-group">
+      <label for="cidade">Cidade</label>
+      <input type="text" id="cidade" placeholder="Sua cidade" />
+    </div>
+    <button class="btn-cta" onclick="handleSubmit()">Fale com um Especialista</button>
+    <p class="form-note">🔒 Seus dados estão seguros. Sem spam.</p>
+  </div>
+</section>
+
+<div class="section-separator"></div>
+
+<!-- ══ POR QUE PLANO ═══════════════════════════════════ -->
+<section class="section-cream fade-in">
+  <p class="section-label">Saúde em Primeiro Lugar</p>
+  <h2 class="serif-heading" style="font-size:clamp(30px,8vw,42px); margin-bottom:20px;">
+    Por que é importante ter um plano de saúde hoje?
+  </h2>
+  <div class="divider" style="background:linear-gradient(90deg,#7a5c38,transparent);"></div>
+  <p class="why-intro" style="color:#1a1a1a;">
+    O sistema público de saúde enfrenta grandes desafios: filas longas, falta de especialistas e
+    demora no diagnóstico. Com um plano de saúde, você garante atendimento rápido, com qualidade
+    e sem surpresas no bolso.
+  </p>
+  <p class="why-intro" style="color:#1a1a1a;">
+    Em um mundo onde o custo de uma internação pode chegar a dezenas de milhares de reais,
+    ter um plano deixou de ser luxo — é uma necessidade.
+  </p>
+
+  <div class="stats-row" style="border-color:rgba(90,60,40,.2);">
+    <div class="stat" style="border-color:rgba(90,60,40,.2);">
+      <span class="stat-number" style="color:#db8849;">50M+</span>
+      <span class="stat-label" style="color:#444;">brasileiros com plano</span>
+    </div>
+    <div class="stat" style="border-color:rgba(90,60,40,.2);">
+      <span class="stat-number" style="color:#db8849;">3×</span>
+      <span class="stat-label" style="color:#444;">mais rápido que o SUS</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number" style="color:#db8849;">R$0</span>
+      <span class="stat-label" style="color:#444;">nossa assessoria</span>
+    </div>
+  </div>
+
+  <div class="benefits-grid">
+    <div class="benefit-card" style="background:rgba(255,255,255,.7);border-color:rgba(90,60,40,.15);">
+      <div class="benefit-icon" style="background:linear-gradient(135deg,rgba(219,136,73,.2),rgba(219,136,73,.05));">🛡️</div>
+      <div>
+        <div class="benefit-title" style="color:#111;">Proteção financeira</div>
+        <div class="benefit-text" style="color:#333;">Evite gastos inesperados com internações, cirurgias e emergências. Um plano protege seu patrimônio.</div>
+      </div>
+    </div>
+    <div class="benefit-card" style="background:rgba(255,255,255,.7);border-color:rgba(90,60,40,.15);">
+      <div class="benefit-icon" style="background:linear-gradient(135deg,rgba(219,136,73,.2),rgba(219,136,73,.05));">⏱️</div>
+      <div>
+        <div class="benefit-title" style="color:#111;">Acesso rápido a especialistas</div>
+        <div class="benefit-text" style="color:#333;">Consultas com especialistas sem esperar meses para ser atendido.</div>
+      </div>
+    </div>
+    <div class="benefit-card" style="background:rgba(255,255,255,.7);border-color:rgba(90,60,40,.15);">
+      <div class="benefit-icon" style="background:linear-gradient(135deg,rgba(219,136,73,.2),rgba(219,136,73,.05));">🔬</div>
+      <div>
+        <div class="benefit-title" style="color:#111;">Exames e prevenção</div>
+        <div class="benefit-text" style="color:#333;">Realize exames preventivos regularmente. A detecção precoce salva vidas.</div>
+      </div>
+    </div>
+    <div class="benefit-card" style="background:rgba(255,255,255,.7);border-color:rgba(90,60,40,.15);">
+      <div class="benefit-icon" style="background:linear-gradient(135deg,rgba(219,136,73,.2),rgba(219,136,73,.05));">👨‍👩‍👧</div>
+      <div>
+        <div class="benefit-title" style="color:#111;">Cobertura para toda a família</div>
+        <div class="benefit-text" style="color:#333;">Planos individuais, familiares ou empresariais. Cuide de todos com um único contrato.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-separator"></div>
+
+<!-- ══ TIPOS DE PLANO ══════════════════════════════════ -->
+<section class="section-cream fade-in">
+  <p class="section-label">Modalidades</p>
+  <h2 class="serif-heading" style="font-size:clamp(28px,8vw,40px);">
+    Qual é o plano certo para você?
+  </h2>
+  <div class="divider" style="background:linear-gradient(90deg,#7a5c38,transparent);"></div>
+  <div class="plan-cards">
+    <div class="plan-card pf">
+      <div class="plan-card-icon">👤</div>
+      <div class="plan-card-title">Pessoa Física</div>
+      <p class="plan-card-text">
+        O plano pessoa física é contratado diretamente por uma pessoa em seu CPF, sem necessidade
+        de vínculo com empresa ou associação. É uma opção ideal para quem busca proteção para si
+        e sua família, com regras definidas pela Agência Nacional de Saúde Suplementar, incluindo
+        reajustes anuais regulamentados e maior previsibilidade nos custos.
+      </p>
+    </div>
+    <div class="plan-card pj">
+      <div class="plan-card-icon">🏢</div>
+      <div class="plan-card-title">Pessoa Jurídica</div>
+      <p class="plan-card-text">
+        O plano pessoa jurídica é contratado por meio de um CNPJ e pode ser destinado ao empresário,
+        sócios, funcionários e, em muitos casos, seus dependentes. Essa modalidade costuma oferecer
+        valores mais competitivos e uma ampla variedade de opções, sendo uma excelente alternativa
+        para empresas de todos os portes, inclusive Microempreendedor Individual (MEI).
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="section-separator"></div>
+
+<!-- ══ EMPRESA ════════════════════════════════════════ -->
+<section class="section-dark2 fade-in">
+  <p class="section-label">Saúde Corporativa</p>
+  <h2 class="serif-heading" style="font-size:clamp(26px,7vw,38px); margin-bottom:20px;">
+    A importância de um Plano de Saúde para a sua empresa
+  </h2>
+  <div class="divider"></div>
+  <div class="empresa-text">
+    <p>
+      Oferecer um plano de saúde empresarial vai muito além de um benefício adicional — é uma
+      decisão estratégica que impacta diretamente a performance e a sustentabilidade do negócio.
+      Como corretora especializada em seguros saúde, observamos diariamente como empresas que
+      investem na saúde de seus colaboradores colhem resultados consistentes e duradouros.
+    </p>
+    <p>
+      Um dos principais ganhos está na redução da rotatividade de funcionários. O plano de saúde
+      é um dos benefícios mais valorizados pelos profissionais e, muitas vezes, decisivo na
+      escolha e permanência em uma empresa.
+    </p>
+    <p>
+      Além disso, colaboradores com acesso a atendimento médico de qualidade tendem a cuidar
+      melhor da saúde, o que reduz afastamentos e eleva a produtividade. A prevenção e o
+      acompanhamento constante evitam problemas mais graves, garantindo maior estabilidade
+      operacional para a empresa.
+    </p>
+    <p>
+      Outro ponto essencial é o fortalecimento da imagem corporativa. Empresas que demonstram
+      preocupação genuína com o bem-estar de sua equipe se destacam no mercado, melhoram o
+      clima organizacional e aumentam o engajamento dos colaboradores.
+    </p>
+    <p>
+      Investir em um plano de saúde empresarial é investir em pessoas — e empresas que cuidam
+      de pessoas crescem com mais solidez e competitividade.
+    </p>
+  </div>
+  <br/>
+  <a href="#cotacao" class="btn-cta" style="display:block;text-align:center;padding:15px;border-radius:8px;background:#db8849;color:#fff;font-family:var(--sans);font-size:14px;font-weight:500;">
+    Solicitar Cotação Empresarial
+  </a>
+</section>
+
+<div class="section-separator"></div>
+
+<!-- ══ PARCEIROS ══════════════════════════════════════ -->
+<section class="section-cream fade-in">
+  <p class="section-label">Nossos Parceiros</p>
+  <h2 class="serif-heading" style="font-size:clamp(26px,7vw,38px); margin-bottom:10px;">
+    Trabalhamos com os melhores planos do mercado
+  </h2>
+  <p style="font-size:13px;color:#333;line-height:1.6;margin-bottom:4px;">
+    Parceria com as maiores operadoras do Brasil para oferecer a melhor cobertura para você.
+  </p>
+  <div class="partners-grid">
+    <div class="partner-tile"><img src="logo-bradesco.png" alt="Bradesco Saúde" /></div>
+    <div class="partner-tile"><img src="logo-sulamerica.png" alt="SulAmérica" /></div>
+    <div class="partner-tile"><img src="logo-unimed.png" alt="Unimed" /></div>
+    <div class="partner-tile"><img src="logo-hapvida.png" alt="Hapvida" /></div>
+    <div class="partner-tile"><img src="logo-santacasa.png" alt="Santa Casa Saúde" /></div>
+    <div class="partner-tile"><img src="logo-alice.png" alt="Alice" /></div>
+    <div class="partner-tile"><img src="logo-omint.png" alt="Omint" /></div>
+    <div class="partner-tile" style="font-family:var(--serif);font-size:17px;font-weight:600;color:#5c3d2e;letter-spacing:.06em;">Porto Saúde</div>
+    <div class="partner-tile" style="font-family:var(--serif);font-size:17px;font-weight:600;color:#5c3d2e;letter-spacing:.06em;">Amil</div>
+  </div>
+</section>
+
+<div class="section-separator"></div>
+
+<!-- ══ INSTITUCIONAL ══════════════════════════════════ -->
+<section class="section-cream fade-in">
+  <p class="section-label">Quem Somos</p>
+  <h2 class="serif-heading" style="font-size:clamp(28px,8vw,40px);margin-bottom:20px;">
+    Conheça a Santi Planos de Saúde
+  </h2>
+  <div class="divider" style="background:linear-gradient(90deg,#7a5c38,transparent);"></div>
+
+  <!-- fotos -->
+  <div class="about-photos">
+    <div class="about-photo-main">
+      <img src="img_team2.jpeg" alt="Equipe Santi" />
+    </div>
+    <div class="about-photo-sub">
+      <img src="img_team1.jpeg" alt="Equipe Santi" />
+    </div>
+    <div class="about-photo-sub">
+      <img src="img_team3.jpeg" alt="Equipe Santi" />
+    </div>
+  </div>
+
+  <blockquote class="about-quote" style="border-left-color:#db8849;color:#db8849;">
+    "Saúde é o maior patrimônio que existe."
+  </blockquote>
+
+  <div class="about-text" style="color:#1a1a1a;">
+    <p>
+      A Santi Seguros é uma consultoria especializada em planos de saúde, dedicada a ajudar pessoas,
+      famílias e empresas a encontrarem a solução mais adequada às suas necessidades. Com atendimento
+      personalizado e análise estratégica de cada perfil, a Santi compara as principais operadoras
+      do mercado e identifica as opções com o melhor equilíbrio entre custo, cobertura e rede credenciada.
+    </p>
+    <p>
+      Nosso trabalho vai muito além da simples cotação. Atuamos de forma consultiva, orientando cada
+      cliente em todas as etapas do processo, desde a escolha do plano ideal até a contratação e o
+      suporte pós-venda. O objetivo da Santi é oferecer segurança, transparência e economia, garantindo
+      que cada cliente tenha acesso a um plano de saúde que realmente faça sentido para sua realidade.
+    </p>
+  </div>
+
+  <br/>
+  <a href="#cotacao" style="display:block;text-align:center;padding:15px;border-radius:8px;background:#db8849;color:#fff;font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:.05em;">
+    Fale com um Especialista
+  </a>
+</section>
+
+<!-- ══ FOOTER ══════════════════════════════════════════ -->
+<footer>
+  <img src="logosanti-new.png" alt="Santi Planos de Saúde" />
+  <p class="footer-copy">© 2025 Todos os direitos reservados.</p>
+</footer>
+
+<script>
+  /* ── Intersection Observer para fade-in ── */
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  /* ── Submit simples ── */
+  function handleSubmit() {
+    const nome    = document.getElementById('nome').value.trim();
+    const tel     = document.getElementById('telefone').value.trim();
+    const tipo    = document.getElementById('tipo').value;
+    const idades  = document.getElementById('idades').value.trim();
+    const cidade  = document.getElementById('cidade').value.trim();
+
+    if (!nome || !tel || !tipo || !cidade) {
+      alert('Por favor, preencha pelo menos nome, telefone, tipo de plano e cidade.');
+      return;
+    }
+
+    const msg = encodeURIComponent(
+      `Olá! Gostaria de fazer uma cotação.\n\n` +
+      `Nome: ${nome}\nTelefone: ${tel}\nTipo: ${tipo === 'pf' ? 'Pessoa Física' : 'Pessoa Jurídica'}\n` +
+      `Idades: ${idades || 'não informado'}\nCidade: ${cidade}`
+    );
+    window.open(`https://wa.me/55?text=${msg}`, '_blank');
+  }
+</script>
+</body>
+</html>
