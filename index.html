@@ -50,7 +50,7 @@
     }
     .serif-heading {
       font-family: var(--serif);
-      font-weight: 400;
+      font-weight: 700;
       line-height: 1.15;
       color: var(--cream);
     }
@@ -67,15 +67,15 @@
     /* ── HEADER / NAV ────────────────────────────────── */
     header {
       position: sticky; top: 0; z-index: 100;
-      background: linear-gradient(to bottom, rgba(11,0,83,.85) 0%, rgba(11,0,83,0) 100%);
+      background: transparent;
       border-bottom: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 14px 20px;
+      padding: 10px 20px 6px;
     }
     .logo-wrap img {
-      height: 62px;
+      height: 82px;
       width: auto;
       object-fit: contain;
     }
@@ -108,13 +108,14 @@
       display: inline-block;
       font-family: var(--sans);
       font-size: 10px;
-      font-weight: 500;
+      font-weight: 700;
       letter-spacing: .18em;
       text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(200,169,110,.4);
+      color: #1a1a1a;
+      background: var(--cream);
+      border: none;
       border-radius: 100px;
-      padding: 5px 14px;
+      padding: 7px 16px;
     }
     .hero-title {
       font-family: var(--serif);
@@ -151,14 +152,14 @@
 
     /* ── FORM CARD ───────────────────────────────────── */
     .form-section {
-      background: var(--dark2);
+      background: var(--cream2);
       padding: 32px 24px;
     }
     .form-title {
       font-family: var(--serif);
-      font-size: 26px;
-      font-weight: 400;
-      color: var(--cream);
+      font-size: 28px;
+      font-weight: 700;
+      color: #111;
       margin-bottom: 24px;
       line-height: 1.2;
     }
@@ -170,25 +171,25 @@
       font-weight: 500;
       letter-spacing: .12em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: #555;
     }
     input, select {
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(200,169,110,.2);
+      background: #fff;
+      border: 1px solid rgba(90,60,40,.2);
       border-radius: 8px;
       padding: 13px 16px;
       font-family: var(--sans);
       font-size: 14px;
-      color: var(--cream);
+      color: #111;
       outline: none;
       transition: border-color .2s;
       -webkit-appearance: none;
       appearance: none;
       width: 100%;
     }
-    input::placeholder { color: rgba(200,169,110,.3); }
+    input::placeholder { color: #aaa; }
     input:focus, select:focus { border-color: var(--gold); }
-    select option { background: var(--dark2); color: var(--cream); }
+    select option { background: #fff; color: #111; }
     .select-wrap { position: relative; }
     .select-wrap::after {
       content: '';
@@ -198,7 +199,7 @@
       margin-top: 3px;
       pointer-events: none;
     }
-    .ages-note { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .ages-note { font-size: 12px; color: #777; margin-top: 4px; }
     .btn-cta {
       width: 100%;
       padding: 15px;
@@ -207,9 +208,9 @@
       border-radius: 8px;
       font-family: var(--sans);
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 700;
       letter-spacing: .08em;
-      color: var(--dark);
+      color: #fff;
       cursor: pointer;
       margin-top: 6px;
       transition: opacity .2s, transform .15s;
@@ -218,7 +219,7 @@
     .form-note {
       text-align: center;
       font-size: 11px;
-      color: var(--text-muted);
+      color: #888;
       margin-top: 12px;
     }
 
@@ -259,27 +260,27 @@
       margin-bottom: 14px;
     }
     .stats-row {
-      display: flex; gap: 0;
-      border: 1px solid rgba(200,169,110,.15);
-      border-radius: var(--radius);
-      overflow: hidden;
+      display: flex; gap: 10px;
       margin: 28px 0 36px;
     }
     .stat {
       flex: 1;
-      padding: 16px 8px;
+      padding: 18px 8px;
       text-align: center;
-      border-right: 1px solid rgba(200,169,110,.15);
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px rgba(90,60,40,.1);
     }
-    .stat:last-child { border-right: none; }
+    .stat:last-child { }
     .stat-number {
       font-family: var(--serif);
-      font-size: 24px;
-      font-weight: 500;
+      font-size: 30px;
+      font-weight: 600;
       color: var(--gold);
       display: block;
+      margin-bottom: 4px;
     }
-    .stat-label { font-size: 10px; color: var(--text-muted); line-height: 1.4; }
+    .stat-label { font-size: 11px; color: #555; line-height: 1.4; font-weight: 500; }
 
     .benefits-grid { display: flex; flex-direction: column; gap: 12px; }
     .benefit-card {
@@ -417,7 +418,7 @@
       padding: 28px 24px;
       text-align: center;
     }
-    footer img { height: 70px; width: auto; margin: 0 auto 10px; }
+    footer img { height: 96px; width: auto; margin: 0 auto 10px; }
     .footer-copy { font-size: 11px; color: #666; }
 
     /* ── ANIMATIONS ──────────────────────────────────── */
@@ -673,11 +674,11 @@
     Parceria com as maiores operadoras do Brasil para oferecer a melhor cobertura para você.
   </p>
   <div class="partners-grid">
-    <div class="partner-tile"><img src="IMG_6280_JPG__1_-removebg-preview.png" alt="Bradesco Saúde" /></div>
-    <div class="partner-tile"><img src="WhatsApp_Image_2026-04-13_at_21.27.24__2_-removebg-preview.png" alt="SulAmérica" /></div>
-    <div class="partner-tile"><img src="WhatsApp_Image_2026-04-13_at_21.29.57__1___1_-removebg-preview.png" alt="Unimed" /></div>
+    <div class="partner-tile"><img src="IMG_6280_JPG__1_-removebg-preview.png" alt="Bradesco Saúde" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\"font-family:serif;font-weight:700;color:#c00;font-size:14px;\">Bradesco Saúde</span>'" /></div>
+    <div class="partner-tile"><img src="WhatsApp_Image_2026-04-13_at_21.27.24__2_-removebg-preview.png" alt="SulAmérica" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\"font-family:serif;font-weight:700;color:#e87722;font-size:14px;\">SulAmérica</span>'" /></div>
+    <div class="partner-tile"><img src="WhatsApp_Image_2026-04-13_at_21.29.57__1___1_-removebg-preview.png" alt="Unimed" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\"font-family:serif;font-weight:700;color:#00843d;font-size:14px;\">Unimed</span>'" /></div>
     <div class="partner-tile"><img src="hapvida-removebg-preview.png" alt="Hapvida" /></div>
-    <div class="partner-tile"><img src="WhatsApp_Image_2026-04-13_at_21.29.57__3_-removebg-preview.png" alt="Santa Casa Saúde" /></div>
+    <div class="partner-tile"><img src="WhatsApp_Image_2026-04-13_at_21.29.57__3_-removebg-preview.png" alt="Santa Casa Saúde" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\"font-family:serif;font-weight:700;color:#00aeef;font-size:13px;\">Santa Casa</span>'" /></div>
     <div class="partner-tile"><img src="alice-removebg-preview.png" alt="Alice" /></div>
     <div class="partner-tile"><img src="omint-logo-3-removebg-preview.png" alt="Omint" /></div>
     <div class="partner-tile" style="font-family:var(--serif);font-size:17px;font-weight:600;color:#5c3d2e;letter-spacing:.06em;">Porto Saúde</div>
@@ -698,13 +699,13 @@
   <!-- fotos -->
   <div class="about-photos">
     <div class="about-photo-main">
-      <img src="IMG_5322.JPEG" alt="Equipe Santi" />
+      <img src="IMG_5322 (2).JPEG" alt="Equipe Santi" />
     </div>
     <div class="about-photo-sub">
-      <img src="IMG_5513.JPG.jpeg" alt="Equipe Santi" />
+      <img src="IMG_5513.JPG (1).jpeg" alt="Equipe Santi" />
     </div>
     <div class="about-photo-sub">
-      <img src="IMG_5243.JPEG" alt="Equipe Santi" />
+      <img src="IMG_5243 (1).JPEG" alt="Equipe Santi" />
     </div>
   </div>
 
@@ -736,7 +737,7 @@
 <!-- ══ FOOTER ══════════════════════════════════════════ -->
 <footer>
   <img src="logosanti-removebg-preview.png" alt="Santi Planos de Saúde" />
-  <p class="footer-copy">© 2025 Todos os direitos reservados.</p>
+  <p class="footer-copy">© 2026 Todos os direitos reservados.</p>
 </footer>
 
 <script>
@@ -749,23 +750,23 @@
 
   /* ── Submit simples ── */
   function handleSubmit() {
-  const nome   = document.getElementById('nome').value.trim();
-  const tel    = document.getElementById('telefone').value.trim();
-  const tipo   = document.getElementById('tipo').value;
-  const idades = document.getElementById('idades').value.trim();
-  const cidade = document.getElementById('cidade').value.trim();
+    const nome    = document.getElementById('nome').value.trim();
+    const tel     = document.getElementById('telefone').value.trim();
+    const tipo    = document.getElementById('tipo').value;
+    const idades  = document.getElementById('idades').value.trim();
+    const cidade  = document.getElementById('cidade').value.trim();
 
-  if (!nome || !tel || !tipo || !cidade) {
-    alert('Por favor, preencha pelo menos nome, telefone, tipo de plano e cidade.');
-    return;
-  }
+    if (!nome || !tel || !tipo || !cidade) {
+      alert('Por favor, preencha pelo menos nome, telefone, tipo de plano e cidade.');
+      return;
+    }
 
-  const msg = encodeURIComponent(
-    `Olá! Gostaria de solicitar uma cotação.\n\n` +
-    `Nome: ${nome}\nTelefone: ${tel}\nTipo: ${tipo === 'pf' ? 'Pessoa Física' : 'Pessoa Jurídica'}\n` +
-    `Idades: ${idades || 'não informado'}\nCidade: ${cidade}`
-  );
-  window.open(`https://wa.me/5512982778284?text=${msg}`, '_blank');
+    const msg = encodeURIComponent(
+      `Olá! Gostaria de fazer uma cotação.\n\n` +
+      `Nome: ${nome}\nTelefone: ${tel}\nTipo: ${tipo === 'pf' ? 'Pessoa Física' : 'Pessoa Jurídica'}\n` +
+      `Idades: ${idades || 'não informado'}\nCidade: ${cidade}`
+    );
+    window.open(`https://wa.me/55?text=${msg}`, '_blank');
   }
 </script>
 </body>
