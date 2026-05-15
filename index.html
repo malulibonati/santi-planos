@@ -66,13 +66,13 @@
 
     /* ── HEADER / NAV ────────────────────────────────── */
     header {
-      position: sticky; top: 0; z-index: 100;
-      background: transparent;
+      position: relative;
+      background: #0c0530;
       border-bottom: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 16px 20px 8px;
+      padding: 20px 20px 16px;
     }
     .logo-wrap img {
       height: 100px;
@@ -379,20 +379,22 @@
       grid-column: span 2;
       border-radius: 12px;
       overflow: hidden;
-      height: 260px;
+      height: 340px;
+      background: #1a1512;
     }
     .about-photo-main img {
       width: 100%; height: 100%;
-      object-fit: cover; object-position: center top;
+      object-fit: contain; object-position: center top;
     }
     .about-photo-sub {
       border-radius: 12px;
       overflow: hidden;
-      height: 160px;
+      height: 200px;
+      background: #1a1512;
     }
     .about-photo-sub img {
       width: 100%; height: 100%;
-      object-fit: cover; object-position: center top;
+      object-fit: contain; object-position: center top;
     }
     .about-quote {
       font-family: var(--serif);
@@ -419,7 +421,7 @@
       padding: 28px 24px;
       text-align: center;
     }
-    footer img { height: 96px; width: auto; margin: 0 auto 10px; }
+    footer img { height: 120px; width: auto; margin: 0 auto 10px; }
     .footer-copy { font-size: 11px; color: #666; }
 
     /* ── ANIMATIONS ──────────────────────────────────── */
@@ -727,6 +729,16 @@
       suporte pós-venda. O objetivo da Santi é oferecer segurança, transparência e economia, garantindo
       que cada cliente tenha acesso a um plano de saúde que realmente faça sentido para sua realidade.
     </p>
+  </div>
+
+  <!-- fotos extras lado a lado -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px;margin-bottom:4px;">
+    <div style="border-radius:12px;overflow:hidden;height:180px;">
+      <img src="extra1.jpg" alt="Equipe Santi" style="width:100%;height:100%;object-fit:cover;object-position:center top;" />
+    </div>
+    <div style="border-radius:12px;overflow:hidden;height:180px;">
+      <img src="extra2.jpg" alt="Equipe Santi" style="width:100%;height:100%;object-fit:cover;object-position:center top;" />
+    </div>
   </div>
 
   <br/>
